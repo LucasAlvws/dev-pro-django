@@ -23,8 +23,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest pytest-cov
         if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+    - name: Environments
+      run: |
+        cp contrib/envsample .env
     - name: Build coverage file
       run: |
-        pytest --cache-clear --cov=pypro > pytest-coverage.txt
-    - name: Comment coverage
-      uses: coroo/pytest-coverage-commentator@v1.0.2
+        pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov=pypro | tee pytest-coverage.txt
+    - name: Pytest coverage comment
+      uses: MishaKav/pytest-coverage-comment@main
+      with:
+        pytest-coverage-path: ./pytest-coverage.txt
+        junitxml-path: ./pytest.xml
