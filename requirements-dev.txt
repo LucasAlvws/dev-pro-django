@@ -3,3 +3,4 @@ ruff
 pytest-django==4.8.0
 pytest-cov==5.0.0
 codecov==2.1.13
+ipython==8.27.0
