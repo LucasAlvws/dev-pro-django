@@ -134,7 +134,6 @@ COLLECTFAST_ENABLED = False
 
 AWS_S3_ENABLE = config('AWS_S3_ENABLE', default=False, cast=bool)
 if AWS_S3_ENABLE:
-    from IPython import embed;embed(header='')
     AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default=False)
     COLLECTFAST_ENABLED = True
     STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
